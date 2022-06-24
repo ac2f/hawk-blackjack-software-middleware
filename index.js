@@ -21,7 +21,7 @@ app.post("/augg", (req, res) => {
     console.log(qs.stringify(tmpData));
     axios.post("https://api.auth.gg/v1/", qs.stringify(tmpData), config={headers: headers}).then(e => res.send(e.data)).catch(e => res.send(e));
 });
-var server = app.listen(8081, function () {
+var server = app.listen(3333, function () {
    var host = server.address().address;
    var port = server.address().port;
    console.log("App listening at http://localhost:%s", host, port);
