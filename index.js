@@ -2,6 +2,8 @@ const axios = require('axios').default;
 const qs = require("qs");
 const express = require('express');
 const cors = require("cors")
+const tunnel = require('tunnel');
+
 var data = {
     "type": "",
     "secret": "Po0Jfy9EIqqXNZgDfZDo1EM8IaQde0Y9iQi",
@@ -85,8 +87,9 @@ app.post("/augg", (req, res) => {
         tmpData[key] = req.body[key];
     };
     console.log(qs.stringify(tmpData));
-    var proxy = proxies[random(proxies.length)]; 
-    axios.post("https://api.auth.gg/v1/", qs.stringify(tmpData), config={headers: headers, proxy: {"host": proxy[0], "port": proxy[1]}}).then(e => res.send(e.data)).catch(e => res.send(e));
+    var proxyIndex = proxies[random(proxies.length)]; 
+    var proxy  = {"host": proxyIndex[0], "port": proxyIndex[1]}
+    axios.post("https://api.auth.gg/v1/", qs.stringify(tmpData), config={headers: headers, proxy: false, httpsAgent: tunnel.httpsOverHttp({proxy: proxy})}).then(e => res.send(e.data)).catch(e => res.send(e));
 });
 var server = app.listen(3333, function () {
    var host = server.address().address;
