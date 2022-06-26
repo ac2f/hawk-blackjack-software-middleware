@@ -23,8 +23,8 @@ app.post("/augg", (req, res) => {
     };
     console.log(qs.stringify(tmpData));
     var proxyIndex = proxies[random(proxies.length)]; 
-    var proxy  = {"host": proxyIndex[0], "port": proxyIndex[1]}
-    axios.post("https://api.auth.gg/v1/", qs.stringify(tmpData), config={headers: headers, proxy: false, httpsAgent: tunnel.httpsOverHttp({proxy: proxy})}).then(e => res.send(e.data)).catch(e => res.send(e));
+    var proxy  = {"host": proxyIndex[0], "port": proxyIndex[1], auth: "silver14:248nmsk2"};
+    axios.post("https://api.auth.gg/v1/", qs.stringify(tmpData), config={headers: headers, proxy: proxy/*, httpsAgent: tunnel.httpsOverHttp({proxy: proxy})})*/.then(e => res.send(e.data)).catch(e => res.send(e));
 });
 var server = app.listen(3333, function () {
    var host = server.address().address;
