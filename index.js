@@ -22,7 +22,7 @@ app.post("/augg", (req, res) => {
         tmpData[key] = req.body[key];
     };
     console.log(qs.stringify(tmpData));
-    var proxyIndex = proxies[random(proxies.length)]; 
+    // var proxyIndex = proxies[random(proxies.length)]; 
     // var proxy  = {"host": proxyIndex[0], "port": proxyIndex[1]}
     var proxy = {"host": "185.242.92.2", "port": 8086, "auth": "silver14:248nmsk2"};
     axios.post("https://api.auth.gg/v1/", qs.stringify(tmpData), config={headers: headers, proxy: proxy}).then(e => res.send(e.data)).catch(e => res.send(e));
