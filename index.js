@@ -11,7 +11,7 @@ var data = {
     "aid": "718211",
 };
 var headers = { 'Accept-Encoding': 'utf8', 'Content-Type': 'application/x-www-form-urlencoded, application/json', "Accept": "*/*",  };
-var proxies = 
+
 const random = (max) => Math.floor(Math.random() * max);
 var app = express();
 app.use(cors({origin: "*"}));
